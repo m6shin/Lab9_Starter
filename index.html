@@ -118,17 +118,17 @@
     });
 
     let consoleErrorButton = errorBtns[1];
-    logBtn.addEventListener('click', () => {
+    consoleErrorButton.addEventListener('click', () => {
       console.log('Console Error Demo');
     });
 
     let consoleCountButton = errorBtns[2];
-    logBtn.addEventListener('click', () => {
+    consoleCountButton.addEventListener('click', () => {
       console.log('Console Counter Demo');
     });
 
     let consoleWarnButton = errorBtns[3];
-    logBtn.addEventListener('click', () => {
+    consoleWarnButton.addEventListener('click', () => {
       console.log('Console Warning Demo');
     });
 
@@ -150,7 +150,7 @@
     });
 
     let consoleDirxmlButton = errorBtns[7];
-    dirxmlBtn.addEventListener('click', () => {
+    consoleDirxmlButton.addEventListener('click', () => {
       console.dirxml(consoleDirxmlButton);
     });
 
@@ -223,6 +223,7 @@
     } catch (err) {
       console.log(err.message);
     }
+    
     // Step 5
     window.addEventListener('error', () => {
       console.log('Gotcha! Error caught!');
