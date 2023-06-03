@@ -180,12 +180,13 @@
     });
 
     let consoleTraceButton = errorBtns[13];
-    function foobar2() {
-      foobar();
-    }
     
     function foobar() {
       console.trace();
+    }
+
+    function foobar2() {
+      foobar();
     }
     
     consoleTraceButton.addEventListener('click', () => {
