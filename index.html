@@ -84,8 +84,17 @@
       <button>End Timer</button>
       <button>Console Trace</button>
       <button>Trigger a Global Error</button>
+      <button>Error via Try/Catch</button>
     </section>
   </main>
+
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "be5b3bea18994dfb8e4d0e1c1168283d"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
 
   <script>
     let form = document.querySelector('form');
@@ -102,6 +111,123 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+    // Step 2
+    let consoleLogButton = errorBtns[0];
+    logBtn.addEventListener('click', () => {
+      console.log('Console Log Demo');
+    });
+
+    let consoleErrorButton = errorBtns[1];
+    logBtn.addEventListener('click', () => {
+      console.log('Console Error Demo');
+    });
+
+    let consoleCountButton = errorBtns[2];
+    logBtn.addEventListener('click', () => {
+      console.log('Console Counter Demo');
+    });
+
+    let consoleWarnButton = errorBtns[3];
+    logBtn.addEventListener('click', () => {
+      console.log('Console Warning Demo');
+    });
+
+    let consoleAssertButton = errorBtns[4];
+    consoleAssertButton.addEventListener('click', () => {
+      let num = 1
+      const errorMessage = "odd number";
+      console.assert(number % 2 === 0, '%o', {num, errorMessage});
+    });
+
+    let consoleClearButton = errorBtns[5];
+    consoleClearButton.addEventListener('click', () => {
+      console.clear();
+    });
+
+    let consoleDirButton = errorBtns[6];
+    consoleDirButton.addEventListener('click', () => {
+      console.dir(consoleDirButton);
+    });
+
+    let consoleDirxmlButton = errorBtns[7];
+    dirxmlBtn.addEventListener('click', () => {
+      console.dirxml(consoleDirxmlButton);
+    });
+
+    let consoleGroupStartButton = errorBtns[8];
+    consoleGroupStartButton.addEventListener('click', () => {
+      console.group();
+    });
+
+    let consoleGroupEndButton = errorBtns[9];
+    consoleGroupEndButton.addEventListener('click', () => {
+      console.groupEnd();
+    });
+
+    let consoleTableButton = errorBtns[10];
+    consoleTableButton.addEventListener('click', () => {
+      console.table(["1 fish", "2 fish", "red fish", "blue fish"]);
+    });
+
+    let consoleStartTimerButton = errorBtns[11];
+    consoleStartTimerButton.addEventListener('click', () => {
+      console.time('Timer');
+    });
+
+    let consoleEndTimerButton = errorBtns[12];
+    consoleEndTimerButton.addEventListener('click', () => {
+      console.timeEnd('Timer');
+    });
+
+    let consoleTraceButton = errorBtns[13];
+    function foobar2() 
+      foobar();
+    
+    function foobar()
+      console.trace();
+    
+    consoleTraceButton.addEventListener('click', () => {
+      foobar2();
+    });
+
+    let consoleGlobalErrorButton = errorBtns[14];
+    consoleGlobalErrorButton.addEventListener('click', () => {
+      return undefinedVar;
+    });
+
+    //Step 3
+    let tryCatchErrorButton = errorBtns[15];
+    tryCatchErrorButton.addEventListener('click', () => {
+      try {
+        return undefinedVar;
+      } catch (err) {
+        console.log('A wild Error appeared!');
+      } finally {
+        console.log('Finally executed');
+      }
+    });
+    
+    // Step 4
+    class CustomError extends Error {
+      constructor(message) {
+        super(message);
+        this.name = 'Custom Error';
+      }
+    }
+    function prompt() {
+      if (confirm('Make a Custom Error?')) 
+        throw new CustomError('A wild Custom Error appeared!');
+    }
+    try {
+      prompt();
+    } catch (err) {
+      console.log(err.message);
+    }
+    // Step 5
+    window.addEventListener('error', () => {
+      console.log('Gotcha! Error caught!');
+    });
+    TrackJS.track('Testing TrackJS!');
   </script>
 </body>
 
