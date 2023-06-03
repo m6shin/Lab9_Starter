@@ -180,11 +180,13 @@
     });
 
     let consoleTraceButton = errorBtns[13];
-    function foobar2() 
+    function foobar2() {
       foobar();
+    }
     
-    function foobar()
+    function foobar() {
       console.trace();
+    }
     
     consoleTraceButton.addEventListener('click', () => {
       foobar2();
@@ -206,7 +208,7 @@
         console.log('Finally executed');
       }
     });
-    
+
     // Step 4
     class CustomError extends Error {
       constructor(message) {
